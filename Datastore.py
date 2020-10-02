@@ -1,7 +1,7 @@
 # This is a Python framework to compliment "Peek-a-Boo, I Still See You: Why Efficient Traffic Analysis Countermeasures Fail".
 # Copyright (C) 2012  Kevin P. Dyer (kpdyer.com)
 # See LICENSE for more details.
-
+#Importing required libraries 
 import MySQLdb
 import math
 import config
@@ -23,7 +23,7 @@ class Datastore:
         webpages = []
         for webpageId in webpageIds:
             webpage = Webpage(webpageId)
-            for traceIndex in range(traceIndexStart, traceIndexEnd):
+            for traceIndex in range(traceIndexStart, traceIndexEnd):            #NESTED LOOPING
                 trace = Datastore.getTraceLL( webpageId, traceIndex )
                 webpage.addTrace(trace)
             webpages.append(webpage)
@@ -105,7 +105,7 @@ class Datastore:
 
             data = cursor.fetchall()
             trace = Trace(webpageId)
-            for item in data:
+            for item in data:            
                 direction = Packet.UP
                 if int(item[1])>0:
                     direction = Packet.DOWN
